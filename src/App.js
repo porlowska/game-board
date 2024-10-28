@@ -11,15 +11,13 @@ function App() {
     <>
       <SideBar />
       <main className="py-10 lg:pl-72">
-        <div className="px-4 sm:px-6 lg:px-8">
-          <div className="px-4 sm:px-6 lg:px-8">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/tic-tac-toe" element={<TicTacToe />} />
-              <Route path="/wordle" element={<WordleGame />} />
-              <Route path="/snake" element={<SnakeBoard />} />
-            </Routes>
-          </div>
+        <div className="w-full h-fit bg-[#f8f8f8]">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/tic-tac-toe" element={<TicTacToe />} />
+            <Route path="/wordle" element={<WordleGame />} />
+            <Route path="/snake" element={<SnakeBoard />} />
+          </Routes>
         </div>
       </main>
     </>
