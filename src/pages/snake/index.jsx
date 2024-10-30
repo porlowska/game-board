@@ -1,5 +1,5 @@
 import { Snake } from "../../components/snake/Snake";
-import "./index.css";
+import "./index.module.css";
 
 export const SnakeBoard = () => {
   return (
