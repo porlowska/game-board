@@ -12,3 +12,5 @@ export const Square = ({ value, onSquareClick }) => {
     </button>
   );
 };
+
+export default Square;

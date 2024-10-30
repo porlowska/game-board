@@ -4,7 +4,7 @@ import Grid from "./grid/Grid";
 import Keyboard from "./keyboard/Keyboard";
 import words from "./words.js";
 
-export default function Wordle() {
+export default function WordlGame() {
   const [isClient, setIsClient] = useState(false);
   const [word, setWord] = useState(
     words[Math.floor(Math.random() * words.length)]
@@ -69,7 +69,7 @@ export default function Wordle() {
   });
 
   return isClient ? (
-    <div className="flex flex-col bg-gray-100 h-screen w-screen items-center justify-center">
+    <div className="flex flex-col items-center justify-center">
       <h1 className="text-6xl font-bold uppercase">Wordle</h1>
       <Grid word={word} guess={guess} tries={tries} />
       words: {word} <br></br>

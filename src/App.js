@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import SideBar from "./components/sidebar/SideBar";
 import Home from "./pages/home";
 import TicTacToe from "./pages/tic-tac-toe";
-import WordleGame from "./pages/wordle";
+import Wordle from "./pages/wordle";
 import { SnakeBoard } from "./pages/snake";
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/tic-tac-toe" element={<TicTacToe />} />
-            <Route path="/wordle" element={<WordleGame />} />
+            <Route path="/wordle" element={<Wordle />} />
             <Route path="/snake" element={<SnakeBoard />} />
           </Routes>
         </div>

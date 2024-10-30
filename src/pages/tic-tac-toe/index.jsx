@@ -1,8 +1,8 @@
 "use client";
-import { TicTacToeGame } from "../../components/TicTacToe/TicTacToeGame";
+import TicTacToeGame from "../../components/TicTacToe/TicTacToeGame";
 import "./index.module.css";
 
-export default function TicTacToe() {
+const TicTacToe = () => {
   return (
     <div className="bg-white">
       <div className="relative isolate pt-4">
@@ -51,4 +51,5 @@ export default function TicTacToe() {
       </div>
     </div>
   );
-}
+};
+export default TicTacToe;
