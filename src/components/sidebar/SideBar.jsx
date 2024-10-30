@@ -9,6 +9,7 @@ import {
 } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavigationElements } from "./NavigationElements";
+import { PiGameControllerFill } from "react-icons/pi";
 
 export default function SideBar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -58,11 +59,7 @@ export default function SideBar() {
               {/* Mobile collapsable sidebar */}
               <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-2 ring-1 ring-white/10">
                 <div className="flex h-16 shrink-0 items-center">
-                  <img
-                    alt="Your Company"
-                    src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
-                    className="h-8 w-auto"
-                  />
+                  <PiGameControllerFill className="mt-4 h-10 w-10 text-gray-200" />
                 </div>
                 <nav className="flex flex-1 flex-col">
                   <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -80,11 +77,7 @@ export default function SideBar() {
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
           <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6">
             <div className="flex h-16 shrink-0 items-center">
-              <img
-                alt="Your Company"
-                src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
-                className="h-8 w-auto"
-              />
+              <PiGameControllerFill className="mt-4 h-14 w-14 text-gray-200" />
             </div>
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -105,8 +98,9 @@ export default function SideBar() {
             <span className="sr-only">Open sidebar</span>
             <Bars3Icon aria-hidden="true" className="h-6 w-6" />
           </button>
-          <div className="flex-1 text-sm font-semibold leading-6 text-white">
-            Dashboard
+          <div className="flex-1 text-sm font-semibold leading-6 text-gray-300 inline-flex items-center">
+            <PiGameControllerFill className="h-8 w-8 pr-2" />
+            Game Board
           </div>
         </div>
       </div>

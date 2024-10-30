@@ -1,11 +1,19 @@
-import { CubeIcon, HomeIcon } from "@heroicons/react/20/solid";
+import { GoHomeFill } from "react-icons/go";
 import { Outlet, Link } from "react-router-dom";
+import { GiTicTacToe } from "react-icons/gi";
+import { LuWholeWord } from "react-icons/lu";
+import { VscSnake } from "react-icons/vsc";
 
 const navigation = [
-  { name: "Home", href: "/", icon: HomeIcon, current: false },
-  { name: "Tic Tac Toe", href: "/tic-tac-toe", icon: CubeIcon, current: false },
-  { name: "Wordle", href: "/wordle", icon: CubeIcon, current: false },
-  { name: "Snake", href: "/snake", icon: CubeIcon, current: false },
+  { name: "Home", href: "/", icon: GoHomeFill, current: false },
+  {
+    name: "Tic Tac Toe",
+    href: "/tic-tac-toe",
+    icon: GiTicTacToe,
+    current: false,
+  },
+  { name: "Wordle", href: "/wordle", icon: LuWholeWord, current: false },
+  { name: "Snake", href: "/snake", icon: VscSnake, current: false },
 ];
 
 function classNames(...classes) {
