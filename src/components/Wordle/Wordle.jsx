@@ -1,8 +1,10 @@
 "use client";
-import React, { useEffect, useState, createContext } from "react";
+import React, { useEffect, useState} from "react";
 import Grid from "./grid/Grid";
 import Keyboard from "./keyboard/Keyboard";
 import words from "./words.js";
+import toast from 'react-hot-toast';
+import Button from "../Button.jsx";
 
 export default function WordlGame() {
   const [isClient, setIsClient] = useState(false);
@@ -24,36 +26,38 @@ export default function WordlGame() {
     setGuess(Array(6).fill(""));
     setTries(0);
   };
+    const handleKeyup = (key) => {
+      if (won || lost) return;
+  
+      if (key === "Enter") {
+        submitGuess();
+      }else if (key === "Backspace") {
+        let newGuess = [...guess];
+        newGuess[tries] = newGuess[tries].slice(0, -1);
+        setGuess(newGuess);
+      } else if (guess[tries].length < 5 && /^[A-z]$/.test(key)) {
+        let newGuess = [...guess];
+        newGuess[tries] = newGuess[tries] + key.toLowerCase();
+        setGuess(newGuess);
+      }
+    };
 
-  // Handle key up events
-  const handleKeyup = (e) => {
-    if (won || lost) return;
 
-    if (e.key === "Enter") {
-      submitGuess();
-    }
-
-    if (e.key === "Backspace") {
-      let newGuess = [...guess];
-      newGuess[tries] = newGuess[tries].slice(0, -1); // delete last letter of the array
-      setGuess(newGuess);
-    }
-
-    if (guess[tries].length < 5 && /^[A-z]$/.test(e.key)) {
-      // pupulates letter by letter  guess[tries]
-      let newGuess = [...guess];
-      console.log(newGuess);
-      newGuess[tries] = newGuess[tries] + e.key.toLowerCase();
-      console.log(newGuess);
-      setGuess(newGuess);
-    }
-  };
 
   // Submit the current guess
   const submitGuess = () => {
-    if (words.includes(guess[tries])) {
-      setTries(tries + 1);
+    const currentGuess = guess[tries];
+    if (currentGuess.length < 5) {
+      toast.error("Incomplete word.")
+      return;
     }
+    
+    // Check if the guess exists in the word list
+    if (!words.includes(currentGuess)) {
+      toast.error("Word not found. Try again.");
+      return;
+    }
+    setTries(tries + 1);
   };
 
   useEffect(() => {
@@ -62,25 +66,31 @@ export default function WordlGame() {
   }, []);
 
   useEffect(() => {
-    window.addEventListener("keyup", handleKeyup);
+    const handlePhysicalKeyup = (e) => handleKeyup(e.key);
+    window.addEventListener("keyup", handlePhysicalKeyup);
     return () => {
-      window.removeEventListener("keyup", handleKeyup);
+      window.removeEventListener("keyup", handlePhysicalKeyup);
     };
-  });
+  }, [won, lost, guess, tries]);
+
+  useEffect(() => {
+    if (won) {
+      toast('Good Job!', { icon: '👏', duration: 8000 });
+    } else if (lost) {
+      toast(`Try again! Word: ${word}`, { icon: '😢', duration:9000 });
+    }
+  }, [won, lost]);
+
 
   return isClient ? (
+  
     <div className="flex flex-col items-center justify-center">
-      <h1 className="text-6xl font-bold uppercase">Wordle</h1>
+      
       <Grid word={word} guess={guess} tries={tries} />
-      words: {word} <br></br>
-      guess: {guess}
-      <br></br>
-      tries: {tries}
-      {won && <h2>Won</h2>}
-      {lost && <h2>Lost</h2>}
-      {(won || lost) && <button onClick={init}>Play Again</button>}
-      <Keyboard />
+      {(won || lost) && <Button text={"Play Again"} style={""} clickHandle={init}/>}
+      <Keyboard onKeyPress={handleKeyup} />
     </div>
+
   ) : (
     <div></div>
   );

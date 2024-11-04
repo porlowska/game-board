@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import SideBar from "./components/sidebar/SideBar";
@@ -10,7 +11,7 @@ function App() {
   return (
     <>
       <SideBar />
-      <main className="py-10 lg:pl-72">
+      <main className="lg:pl-72">
         <div className="w-full h-fit bg-[#f8f8f8]">
           <Routes>
             <Route path="/" element={<Home />} />
