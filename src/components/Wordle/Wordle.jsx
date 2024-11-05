@@ -87,7 +87,7 @@ export default function WordlGame() {
     <div className="flex flex-col items-center justify-center">
       
       <Grid word={word} guess={guess} tries={tries} />
-      {(won || lost) && <Button text={"Play Again"} style={""} clickHandle={init}/>}
+      {(won || lost) && <Button text={"Play Again"} className={"bg-white text-gray-900 hover:bg-gray-50 ring-gray-300"} clickHandle={init}/>}
       <Keyboard onKeyPress={handleKeyup} />
     </div>
 

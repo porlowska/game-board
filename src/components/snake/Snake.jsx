@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { paintCell, generateFood, updateGame } from './snakeFunctions';
+import Button from '../Button';
 import Overlay from './Overlay';
 
 const Snake = () => {
@@ -33,7 +34,7 @@ const Snake = () => {
 
     const gameLoop = setInterval(() => {
       // Clear the canvas
-      ctx.fillStyle = '#7f6000'; // Updated background color
+      ctx.fillStyle = '#7f6000';
       ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
       // Draw the snake and food
@@ -86,25 +87,25 @@ const Snake = () => {
     }
   }, [gameOver, score, highScore]);
 
-  // Start or restart the game (resets game values)
+  // Start or restart the game
   const restartGame = () => {
     setScore(0);
     setDirection("right");
     setSnake([{ x: 2, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 0 }]);
     setFood(generateFood(canvasWidth, canvasHeight, cellWidth));
     setGameOver(false);
-    setGameStarted(true); // Start the game immediately
-    setFirstRender(false); // Hide the initial overlay
+    setGameStarted(true); 
+    setFirstRender(false); 
   };
 
   return (
-    <div className="flex flex-col items-center relative">
-      {/* Conditional rendering for overlays */}
+    <div className="flex flex-col items-center">
+      <div className='relative'>
       {firstRender && !gameStarted && (
         <Overlay 
           message="Welcome to Snake Game!" 
           buttonText="Start Game" 
-          onButtonClick={restartGame} // Starts the game without reloading
+          onButtonClick={restartGame}
         />
       )}
       
@@ -112,7 +113,7 @@ const Snake = () => {
         <Overlay 
           message={`Your final score is: ${score}`} 
           buttonText="Play Again" 
-          onButtonClick={restartGame} // Resets game values on "Play Again"
+          onButtonClick={restartGame}
         />
       )}
 
@@ -122,20 +123,27 @@ const Snake = () => {
         height={canvasHeight}
         className="border border-gray-200"
       ></canvas>
+      </div>
 
       {/* Game Stats */}
-      <div className="bg-gray-800 text-white p-4 mt-4 w-72 text-center rounded">
-        <div>Your Score: {score}</div>
-        <div>High Score: {highScore}</div>
-        <button
-          className="bg-gray-600 text-white p-2 mt-2 rounded"
-          onClick={() => {
-            localStorage.removeItem('highscore');
-            setHighScore(0);
-          }}
-        >
-          Reset High Score
-        </button>
+      <div className="bg-white shadow sm:rounded-lg mt-4 w-[350px]">
+        <div className="px-4 py-5 sm:p-6 text-center">
+          <h3 className="text-base font-semibold text-gray-900">Game Stats</h3>
+          <div className='flex items-center mt-1 gap-1 justify-evenly'>
+          <div className="max-w-xl text-sm text-gray-500">
+            <p>Your Score: <span className="font-bold text-gray-900">{score}</span></p>
+            <p>High Score: <span className="font-bold text-gray-900">{highScore}</span></p>
+          </div>
+            <Button
+              text="Reset High Score"
+              className="bg-green-800 text-white hover:bg-green-600 ring-green-800 pointer-events-auto"
+              clickHandle={() => {
+                localStorage.removeItem('highscore');
+                setHighScore(0);
+              }}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
