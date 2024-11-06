@@ -9,7 +9,7 @@ const TicTacToe = () => {
       title="Play Tic-Tac-Toe"
       description="The Classic Game of Strategy and Fun!. Challenge Yourself in a Timeless Game of X's and O's."
       gameComponent={TicTacToeGame}
-      bgColour={['7bf1cc','e957c2', '88d4ae','8264a2']}
+      bgColour={['f7f308','e7bb18', 'e7bb18','fcef03']}
     />
   );
 };

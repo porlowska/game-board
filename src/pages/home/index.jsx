@@ -10,7 +10,7 @@ const Home = () => {
       title={'Welcome to Game Board'}
       description={'a game application created by Polly Orlowska'}
       gameComponent={SplineDesign}
-      bgColour={["f8f8f8", "d3d3d3", "a9a9a9", "808080"]}
+      bgColour={['7bf1cc','e957c2', '88d4ae','8264a2']}
     />
   );
 };

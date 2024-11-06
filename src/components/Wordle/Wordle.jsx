@@ -71,7 +71,7 @@ export default function WordlGame() {
     return () => {
       window.removeEventListener("keyup", handlePhysicalKeyup);
     };
-  }, [won, lost, guess, tries]);
+  }, [won, lost, guess, tries, handleKeyup]);
 
   useEffect(() => {
     if (won) {
@@ -79,7 +79,7 @@ export default function WordlGame() {
     } else if (lost) {
       toast(`Try again! Word: ${word}`, { icon: '😢', duration:9000 });
     }
-  }, [won, lost]);
+  }, [won, lost, word, handleKeyup]);
 
 
   return isClient ? (
