@@ -61,3 +61,4 @@ export const updateGame = (snake, direction, food, setFood, setScore, setGameOve
 
   return newSnake;
 };
+

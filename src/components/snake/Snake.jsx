@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { paintCell, generateFood, updateGame } from './snakeFunctions';
-import Button from '../Button';
+import { handleKeyDown, paintCell, generateFood, updateGame } from './snakeFunctions';
 import Overlay from './Overlay';
+import Stats from './Stats';
+import GameArrows from './GameArrows';
 
 const Snake = () => {
   const canvasRef = useRef(null);
@@ -9,14 +10,14 @@ const Snake = () => {
   const [highScore, setHighScore] = useState(0);
   const [direction, setDirection] = useState("right");
   const [snake, setSnake] = useState([{ x: 2, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 0 }]);
-  const [food, setFood] = useState(generateFood(375, 375, 15));
+  const [food, setFood] = useState(generateFood(345, 345, 15));
   const [gameOver, setGameOver] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
   const [firstRender, setFirstRender] = useState(true);
 
   const cellWidth = 15;
-  const canvasWidth = 375;
-  const canvasHeight = 375;
+  const canvasWidth = 345;
+  const canvasHeight = 345;
 
   // Load high score from localStorage on initial render
   useEffect(() => {
@@ -60,19 +61,20 @@ const Snake = () => {
     return () => clearInterval(gameLoop);
   }, [gameStarted, snake, direction, food]);
 
-  // Handle keyboard input for snake direction and prevent default arrow key scrolling
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (["ArrowLeft", "ArrowUp", "ArrowRight", "ArrowDown"].includes(e.key)) {
-        e.preventDefault();
-      }
-      
-      if (e.key === "ArrowLeft" && direction !== "right") setDirection("left");
-      if (e.key === "ArrowUp" && direction !== "down") setDirection("up");
-      if (e.key === "ArrowRight" && direction !== "left") setDirection("right");
-      if (e.key === "ArrowDown" && direction !== "up") setDirection("down");
-    };
+  // Handle direction change from both keyboard and virtual arrows
+const handleKeyDown = (e, customDirection = null) => {
+  const newDirection = customDirection || e.key.replace("Arrow", "").toLowerCase();
 
+  if (newDirection === "left" && direction !== "right") setDirection("left");
+  if (newDirection === "up" && direction !== "down") setDirection("up");
+  if (newDirection === "right" && direction !== "left") setDirection("right");
+  if (newDirection === "down" && direction !== "up") setDirection("down");
+
+  if (!customDirection) e.preventDefault();
+};
+
+  // Add event listener for keyboard input
+  useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [direction]);
@@ -98,9 +100,23 @@ const Snake = () => {
     setFirstRender(false); 
   };
 
+  const resetHighScore = () => {
+    localStorage.removeItem('highscore');
+    setHighScore(0);
+  };
+
   return (
     <div className="flex flex-col items-center">
-      <div className='relative'>
+
+      {/* Game Stats */}
+      <Stats 
+        score={score} 
+        highScore={highScore} 
+        resetHighScore={resetHighScore}
+      />
+
+
+      <div className='relative mt-3 md:mt-6'>
       {firstRender && !gameStarted && (
         <Overlay 
           message="Welcome to Snake Game!" 
@@ -116,34 +132,16 @@ const Snake = () => {
           onButtonClick={restartGame}
         />
       )}
-
+       {/* Game */}
       <canvas
         ref={canvasRef}
         width={canvasWidth}
         height={canvasHeight}
         className="border border-gray-200"
       ></canvas>
-      </div>
 
-      {/* Game Stats */}
-      <div className="bg-white shadow sm:rounded-lg mt-4 w-[350px]">
-        <div className="px-4 py-5 sm:p-6 text-center">
-          <h3 className="text-base font-semibold text-gray-900">Game Stats</h3>
-          <div className='flex items-center mt-1 gap-1 justify-evenly'>
-          <div className="max-w-xl text-sm text-gray-500">
-            <p>Your Score: <span className="font-bold text-gray-900">{score}</span></p>
-            <p>High Score: <span className="font-bold text-gray-900">{highScore}</span></p>
-          </div>
-            <Button
-              text="Reset High Score"
-              className="bg-green-800 text-white hover:bg-green-600 ring-green-800 pointer-events-auto"
-              clickHandle={() => {
-                localStorage.removeItem('highscore');
-                setHighScore(0);
-              }}
-            />
-          </div>
-        </div>
+      {/* Game Arrows */}
+      <GameArrows handleDirectionChange={(direction) => handleKeyDown(null, direction)} />
       </div>
     </div>
   );
