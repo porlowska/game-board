@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# Game Board
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Game Board - A collection of classic games in one platform
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Full Description](#full-description)
+- [Features](#features)
+- [How to Use](#how-to-use)
+- [List of Dependencies](#list-of-dependencies)
+- [Technologies Used](#technologies-used)
+- [Screenshots](#screenshots)
+- [License](#license)
+- [Badges](#badges)
 
-### `npm start`
+## Full Description
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Game Board is a fun, user-friendly web application where users can play classic games like Snake, Wordle, and Tic-Tac-Toe. Built with React.js, JavaScript, JSX, and Tailwind CSS, this project offers a sleek and intuitive interface that’s easy to navigate. With responsive design, Game Board is playable across devices, including laptops, tablets, and mobile phones, delivering a consistent gaming experience anytime, anywhere.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+User Story: As a user, I want a platform that offers a variety of games with a polished and easy-to-navigate interface, so I can enjoy a casual gaming experience seamlessly on any device.
 
-### `npm test`
+URL of deployed app: [Deployed URL](https://po-game-board.netlify.app/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+- **Classic Games Collection**: Enjoy classic games like Snake, Wordle, and Tic-Tac-Toe, all in one application.
+- **Responsive Design**: The application is optimized for laptops, tablets, and mobile devices, ensuring an enjoyable experience on any screen size.
+- **User-Friendly Interface**: The design prioritizes ease of use, with a clean layout and intuitive controls.
+- **Engaging Gameplay**: Each game is developed to provide smooth interaction, responsive feedback, and an enjoyable gaming experience for all users.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## How to Use
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Open the URL of the deployed app: [Deployed URL](https://po-game-board.netlify.app/)
+2. Browse the available games on the homepage.
+3. Select a game to start playing and enjoy!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## List of Dependencies
 
-### `npm run eject`
+- **React**: A JavaScript library for building user interfaces, utilized to create a dynamic single-page application with an engaging and polished UI.
+- **Netlify**: A platform for deploying web applications, ensuring smooth and accessible application experiences for users.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Technologies Used
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **HTML5 & CSS3**: Standard markup and styling languages used for structuring and styling the application's user interface. HTML5 provides semantic markup, while CSS3 offers styling capabilities to create visually appealing and responsive designs.
+- **Git & GitHub**: Version control system and collaboration platform used for managing the application's source code and facilitating collaborative development.
+- **npm (Node Package Manager)**: A package manager for JavaScript, used for managing project dependencies and packages.
+- **Tailwind CSS**: A utility-first CSS framework that streamlines the styling process and promotes consistency across the application, allowing for quick prototyping and efficient styling customization.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Screenshots
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![Game Board Screenshot Home](public/screenshots/home.png)
+![Game Board Screenshot Snake](public/screenshots/snake.png)
+![Game Board Screenshot Wordle](public/screenshots/wordle.png)
+![Game Board Screenshot Tic-Tac-Toe](public/screenshots/tictactoe.png)
+![Game Board Screenshot Mobile Version](public/screenshots/mobile.png)
